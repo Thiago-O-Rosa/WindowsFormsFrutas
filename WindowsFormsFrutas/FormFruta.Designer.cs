@@ -78,6 +78,7 @@
             this.tbxFruta.Name = "tbxFruta";
             this.tbxFruta.Size = new System.Drawing.Size(120, 20);
             this.tbxFruta.TabIndex = 4;
+            this.tbxFruta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxFruta_KeyPress);
             // 
             // FormFruta
             // 
@@ -91,7 +92,6 @@
             this.Controls.Add(this.btnAdicionar);
             this.Name = "FormFruta";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.FormFruta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

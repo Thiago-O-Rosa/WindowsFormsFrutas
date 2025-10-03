@@ -18,39 +18,38 @@ namespace WindowsFormsFrutas
             InitializeComponent();
         }
 
+        //Chama Class
+        public ClassListaFrutas _novaFruta = new ClassListaFrutas(new List<string> {""});
 
-        public ClassListaFrutas _fruta = new ClassListaFrutas("");
-
+        //Botão Adicionar/Listar/Ordenar
+        
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             string nomeFruta = tbxFruta.Text.Trim();
-
             if (nomeFruta != "")
             {
-                ClassListaFrutas novaFruta = new ClassListaFrutas(nomeFruta);
-                _fruta.Adicionar(novaFruta);
+                tbxFruta.Focus();
+                _novaFruta.Adicionar(nomeFruta);
                 MessageBox.Show($"A fruta {nomeFruta} foi adicionada com sucesso!", "Fruta adicionada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 tbxFruta.Clear(); //Limpa
-                tbxFruta.Focus();
-                
+                lbxListaFruta.Items.Add(nomeFruta);
             }
             else
             {
                 MessageBox.Show("Por favor, insira o nome de uma fruta.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
-            
-               
-            
         }
 
+        //Botão Remover
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            string nomeFruta = tbxFruta.Text.Trim();
-
             if (lbxListaFruta.SelectedItem != null) 
             {
-                MessageBox.Show($"A fruta {lbxListaFruta} foi removida.", "Fruta removida.");
+                tbxFruta.Focus();
+                string nomeFruta = lbxListaFruta.SelectedItem.ToString();
+                MessageBox.Show($"A fruta {nomeFruta} foi removida.", "Fruta removida.");
+                lbxListaFruta.Items.Remove(nomeFruta);
+                _novaFruta.Remover(nomeFruta);
             }
             else
             {
@@ -58,10 +57,15 @@ namespace WindowsFormsFrutas
             }
         }
 
-        private void FormFruta_Load(object sender, EventArgs e)
+        private void tbxFruta_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == 13)
+            {
+                btnAdicionar_Click(sender, e);
+            }
         }
+
+        
     }
 }
     

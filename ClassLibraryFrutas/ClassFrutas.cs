@@ -8,24 +8,43 @@ namespace ClassLibraryFrutas
 {
     public class ClassListaFrutas
     {
-        private string Fruta { get; set;}
-        private List<ClassListaFrutas> _fruta = new List<ClassListaFrutas>();
+        //propriedades 
+        private List<string> _fruta = new List<string>();
 
         //Construtor
-        public ClassListaFrutas (string fruta)
+        public ClassListaFrutas (List<string> fruta)
         {
-            this.Fruta = fruta;
+            this._fruta = fruta;
         }
         
-        public void Adicionar (ClassListaFrutas fruta)
+        //Adicionar
+        public void Adicionar (string fruta)
         {
             _fruta.Add(fruta);
+            Ordenar();
+            //ListarTodos();
         }
 
-        public void Remover (ClassListaFrutas fruta)
+        //Remover
+        public void Remover (string fruta)
         {
             _fruta.Remove(fruta);
+            ListarTodos();
         }
+
+        //Ordenar
+        public void Ordenar()
+        {
+            _fruta.Sort();
+        }
+
+        //Listar
+        public List<string> ListarTodos() =>
+            new List<string>(_fruta);
+        
+
+            
+        
 
        
     }
